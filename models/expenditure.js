@@ -3,7 +3,11 @@ const mongoose = require('mongoose')
 const expenditureSchema = mongoose.Schema({
     expenseName:String,
     price: Number,
-    Date: Date 
+    date: Date,
+    budget:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Budget'
+    }
 }) 
 
 const Expenditure = mongoose.model('Expenditure', expenditureSchema)
