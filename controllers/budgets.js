@@ -54,4 +54,21 @@ budgetRouter.post('/', async(request, response) => {
     await user.save()
 })
 
+budgetRouter.get('/:id', async(request, response) => {
+    const budget = await Budget.findById(request.params.id)
+
+    if(user){
+        return response.status(200).json(budget)
+    }else {
+        return response.status(404).json({
+            error: "not found"
+        }) 
+    }
+})
+
+budgetRouter.delete('/:id', async(request, response) => {
+    const budget = await Budget.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+})
+
 module.exports = budgetRouter
