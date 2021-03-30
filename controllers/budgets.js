@@ -20,6 +20,38 @@ budgetRouter.get('/', async(request, response) => {
         })
     }
 
-    const budgets = await Budget.find({username:decodedToken.username})
+    //const user = await User.findById(decodedToken.id)
+    const budgets = await Budget.find({})
     response.status(200).json(budgets)
 })
+
+budgetRouter.post('/', async(request, response) => {
+    const body = request.body
+    const token = getToken(request)
+
+    const decodedToken = jwt.verify(token, process.env.SECRET) 
+
+    if(!token || !decodedToken.id){
+        return response.status(401).json({
+            error:'token invalid or missing'
+        })
+    }
+
+    const user = await User.findById(decodedToken.id)
+    console.log(user)
+    
+    const budget = new Budget({
+      money:body.money,
+      duration:body.duration,
+      user:user._id
+    })  
+
+    console.log(budget.user)
+
+    const savedBudget = await budget.save()
+    response.json(savedBudget)
+    user.budgets = user.budgets.concat(savedBudget._id)
+    await user.save()
+})
+
+module.exports = budgetRouter

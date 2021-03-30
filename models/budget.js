@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const budgetSchema = mongoose.Schema({
-    money:Number,
+    money:String,
     duration:String,
     expenditures:[
         {

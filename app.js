@@ -5,6 +5,7 @@ const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const userRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const budgetRouter = require('./controllers/budgets')
 const middleware = require('./utils/middleware')
 
 logger.info('connecting to', config.MONGODB_URI)
@@ -22,5 +23,6 @@ app.use(middleware.requestLogger)
 
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/budgets', budgetRouter)
 
 module.exports = app  
