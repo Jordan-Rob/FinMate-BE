@@ -57,7 +57,7 @@ budgetRouter.post('/', async(request, response) => {
 budgetRouter.get('/:id', async(request, response) => {
     const budget = await Budget.findById(request.params.id)
 
-    if(user){
+    if(budget){
         return response.status(200).json(budget)
     }else {
         return response.status(404).json({
