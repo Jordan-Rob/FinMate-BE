@@ -112,6 +112,27 @@ budgetRouter.post('/:budgetID/expenditures', async(request, response) => {
     await budget.save()
 } )
 
+budgetRouter.delete('/:budgetID/expenditures/:id', async(request, response) => {
+    const expenditure = await Expenditure.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+})
+
+budgetRouter.put('/:budgetID/expenditures/:id', async(request, response) => {
+    const body = request.body
+    const budget = await Budget.findById(request.params.id)
+
+    const expenditure = {
+        expenseName: body.expenseName,
+        price: body.price,
+        date: Date.now(),
+        budget:budget._id
+    } 
+
+    const updatedExpenditure = await Expenditure.findByIdAndUpdate(request.params.id, expenditure, {new:true})
+    response.json(updatedExpenditure)
+
+})
+
 
 
 module.exports = budgetRouter
