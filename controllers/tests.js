@@ -3,7 +3,7 @@ const User = require('../models/user')
 const Budget = require('../models/budget')
 const Expenditure = require('../models/expenditure')
 
-router.post('/reset', async(request, response) => {
+testingRouter.post('/reset', async(request, response) => {
     await Expenditure.deleteMany({})
     await Budget.deleteMany({})
     await User.deleteMany({})
