@@ -100,3 +100,16 @@ test('can access a specific budget', async() => {
 
     expect(response.body.money).toContain("2,300,000")                    
 })
+
+test('a budget can be deleted', async() => {
+    const budgets = await helper.budgetsInDB()
+    const budgetToDelete = budgets[0]
+
+    const response = await api
+                       .delete(`/api/budgets/${budgetToDelete._id}`)
+                       .expect(204)
+
+    const budgetsAtEnd = await helper.budgetsInDB()
+    expect(budgetsAtEnd).toHaveLength(helper.initialBudgets.length - 1)
+
+})
