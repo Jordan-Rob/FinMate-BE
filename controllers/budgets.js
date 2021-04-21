@@ -24,7 +24,7 @@ budgetRouter.get('/', async(request, response) => {
     }
 
     //const user = await User.findById(decodedToken.id)
-    const budgets = await Budget.find({}).populate('user', {name:1, username:1})
+    const budgets = await Budget.find({user:decodedToken.id}).populate('user', {name:1, username:1})
     response.status(200).json(budgets)
 })
 
@@ -52,7 +52,7 @@ budgetRouter.post('/', async(request, response) => {
     console.log(budget.user)
 
     const savedBudget = await budget.save()
-    response.json(savedBudget)
+    response.status(201).json(savedBudget)
     user.budgets = user.budgets.concat(savedBudget._id)
     await user.save()
 })

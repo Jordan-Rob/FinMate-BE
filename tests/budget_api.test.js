@@ -49,3 +49,42 @@ test('budgets are returned as json', async() => {
 afterAll(() => {
     mongoose.connection.close()
 })
+
+test('new budget can be added', async () => {
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('tester', 10)
+    const testUser = new User({
+        name:" mulero",
+        username: "mulero kun",
+        password:passwordHash
+    })
+
+    await testUser.save()
+
+    const response = await api
+                        .post('/api/login')
+                        .send({
+                            username:"mulero kun",
+                            password:"tester"
+                        })
+
+    const token = response.body.token
+
+    const newBudget = {
+        money:"265,000 UGX",
+        duration:"2 weeks"
+    }
+    
+    await api
+      .post('/api/budgets')
+      .send(newBudget)
+      .set('Authorization', `Bearer ${token}`)
+      .expect(201)
+
+    const budgets = await api.get('/api/budgets').set('Authorization', `Bearer ${token}`)
+    
+    const monies = budgets.body.map( budget => budget.money )
+    expect(monies).toContain( "265,000 UGX" )
+
+})
