@@ -88,3 +88,15 @@ test('new budget can be added', async () => {
     expect(monies).toContain( "265,000 UGX" )
 
 })
+
+test('can access a specific budget', async() => {
+    const budgets = await helper.budgetsInDB()
+    const noteToView = budgets[0]
+
+    const response = await api
+                       .get(`/api/budgets/${noteToView._id}`)
+                       .expect(200)
+                       .expect('Content-Type', /application\/json/)
+
+    expect(response.body.money).toContain("2,300,000")                    
+})
