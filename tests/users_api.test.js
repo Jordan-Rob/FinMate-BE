@@ -47,6 +47,22 @@ describe('when theres one user initially in db', () => {
         .expect('Content-Type', /application\/json/)
 
     })
+
+    test('users can login ', async () => {
+      const credentials = {
+        username:"cara",
+        password:"tester"
+      }
+
+      const response = await api
+                        .post('/api/login')
+                        .send(credentials)
+                        .expect(200)
+                        .expect('Content-Type', /application\/json/)
+
+      const username = response.body.map( user => user.username)
+      expect(username).toContain('cara')
+    }) 
 })
 
 afterAll(() => {
