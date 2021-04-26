@@ -60,8 +60,8 @@ describe('when theres one user initially in db', () => {
                         .expect(200)
                         .expect('Content-Type', /application\/json/)
 
-      const username = response.body.map( user => user.username)
-      expect(username).toContain('cara')
+    
+      expect(response.body.username).toContain('cara')
     }) 
 })
 
