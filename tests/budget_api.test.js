@@ -46,9 +46,6 @@ test('budgets are returned as json', async() => {
       .expect('Content-Type', /application\/json/)
 })
 
-afterAll(() => {
-    mongoose.connection.close()
-})
 
 test('new budget can be added', async () => {
     await User.deleteMany({})
@@ -112,4 +109,8 @@ test('a budget can be deleted', async() => {
     const budgetsAtEnd = await helper.budgetsInDB()
     expect(budgetsAtEnd).toHaveLength(helper.initialBudgets.length - 1)
 
+})
+
+afterAll(() => {
+    mongoose.connection.close()
 })

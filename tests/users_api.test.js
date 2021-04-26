@@ -39,6 +39,14 @@ describe('when theres one user initially in db', () => {
         expect(usersAtEnd).toHaveLength( usersAtStart.length + 1)
 
     })
+
+    test('users can be called sucessfully', async () => {
+      await api
+        .get('/api/users')
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+
+    })
 })
 
 afterAll(() => {
