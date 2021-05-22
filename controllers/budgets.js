@@ -1,3 +1,24 @@
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Budget:
+ *        type: object
+ *        required:
+ *          - money
+ *          - duration
+ *        properties:
+ *          money:
+ *            type: string
+ *          duration:
+ *            type: string
+ *            description: Time duration for budget.
+ *        example:
+ *           money: 2,000,000 /=
+ *           duration: 2 weeks
+ */
+
+
 const budgetRouter = require('express').Router()
 const Expenditure = require('../models/expenditure')
 const Budget = require('../models/budget')
