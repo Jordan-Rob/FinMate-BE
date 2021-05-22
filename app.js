@@ -8,6 +8,7 @@ const loginRouter = require('./controllers/login')
 const budgetRouter = require('./controllers/budgets')
 const middleware = require('./utils/middleware')
 
+
 logger.info('connecting to', config.MONGODB_URI)
 
 mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
@@ -24,6 +25,7 @@ app.use(middleware.requestLogger)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/budgets', budgetRouter)
+
 
 if(process.env.NODE_ENV === 'test'){
   const testingRouter = require('./controllers/tests')
