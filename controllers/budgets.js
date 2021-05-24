@@ -1,5 +1,5 @@
 /**
- * @swagger
+ * 
  *  components:
  *    schemas:
  *      Budget:
@@ -17,6 +17,31 @@
  *           money: 2,000,000 /=
  *           duration: 2 weeks
  */
+
+
+
+/**
+ * 
+ * path:
+ *  /budgets/:
+ *    post:
+ *      summary: Create a new budget
+ *      tags: [Budget]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Budget'
+ *      responses:
+ *        "200":
+ *          description: budget schema
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Budget'
+ */
+
 
 
 const budgetRouter = require('express').Router()

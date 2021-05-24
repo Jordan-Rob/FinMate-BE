@@ -2,12 +2,14 @@ const http = require('http')
 const app = require('./app')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
-const  swaggerJsdoc = require("swagger-jsdoc")
-const  swaggerUi = require("swagger-ui-express");
+//const  swaggerJsdoc = require("swagger-jsdoc")
+const  swaggerUI = require("swagger-ui-express");
+const docs = require('./docs');
+
 
 
 const server = http.createServer(app)
-
+/*
 const options = {
     definition: {
       openapi: "3.0.0",
@@ -28,7 +30,7 @@ const options = {
       },
       servers: [
         {
-          url: "http://localhost:3000/",
+          url: "http://localhost:3001/",
         },
       ],
     },
@@ -41,7 +43,9 @@ const options = {
     swaggerUi.serve,
     swaggerUi.setup(specs)
   );
+*/
   
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(docs));
 
 server.listen(config.PORT, () => {
     logger.info(`Server is runnin on ${config.PORT}`)
