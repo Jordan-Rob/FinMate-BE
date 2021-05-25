@@ -87,22 +87,22 @@ module.exports = {
     },
     // method of operation
   paths:{
-      '/todos':{
+      '/budgets':{
         get: {
           tags: ["Budget CRUD operations"], // operation's tag.
-          description: "Get todos", // operation's desc.
-          operationId: "getTodos", // unique operation id.
+          description: "Get budgets", // operation's desc.
+          operationId: "getBudgets", // unique operation id.
           parameters: [], // expected params.
           // expected responses
           responses: {
             // response code
             200: {
-              description: "Todos were obtained", // response desc.
+              description: "Budgets were obtained", // response desc.
               content: {
                 // content-type
                 "application/json": {
                   schema: {
-                    $ref: "#/components/schemas/Todo", // Todo model
+                    $ref: "#/components/schemas/Budget", // Todo model
                   },
                 },
               },
@@ -113,8 +113,8 @@ module.exports = {
         // operation's method
         post: {
           tags: ["Budget CRUD operations"], // operation's tag
-          description: "Create todo", // short desc
-          operationId: "createTodo", // unique operation id
+          description: "Create Budget", // short desc
+          operationId: "createBudget", // unique operation id
           parameters: [], // expected params
           requestBody: {
             // expected request body
@@ -122,7 +122,7 @@ module.exports = {
               // content-type
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/TodoInput", // todo input data model
+                  $ref: "#/components/schemas/Budget", // todo input data model
                 },
               },
             },
@@ -131,7 +131,7 @@ module.exports = {
           responses: {
             // response code
             201: {
-              description: "Todo created successfully", // response desc
+              description: "Budget created successfully", // response desc
             },
             // response code
             500: {
@@ -142,12 +142,12 @@ module.exports = {
 
       },
 
-      '/todos/{id}':{
+      '/budgets/{id}':{
         // operation's method
         get: {
           tags: ["Budget CRUD operations"], // operation's tag.
-          description: "Get a todo", // operation's desc.
-          operationId: "getTodo", // unique operation id
+          description: "Get a budget", // operation's desc.
+          operationId: "getBudget", // unique operation id
           parameters: [
             // expected params.
             {
