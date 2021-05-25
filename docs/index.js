@@ -3,12 +3,12 @@ const servers1 = require('./servers')
 module.exports = {
     openapi: "3.0.3", // present supported openapi version
     info: {
-      title: "Simple Todos API", // short title.
-      description: "A simple todos API", //  desc.
+      title: "FinMate financial assistant API", // short title.
+      description: "FinMate API", //  desc.
       version: "1.0.0", // version number
       contact: {
-        name: "John doe", // your name
-        email: "john@web.com", // your email
+        name: "Jordan Rob", // your name
+        email: "jordanrob709@gmail.com", // your email
         url: "web.com", // your website
       },
     },
@@ -20,50 +20,49 @@ module.exports = {
     ],
     tags: [
       {
-        name: "Todo CRUD operations", // name of a tag
+        name: "Budget CRUD operations", // name of a tag
       },
     ],
     components: {
       schemas: {
-        // id model
-        id: {
-          type: "string", // data type
-          description: "An id of a todo", // desc
-          example: "tyVgf", // example of an id
-        },
-        // todo model
-        Todo: {
+        // budget model
+        Budget: {
           type: "object", // data type
           properties: {
-            id: {
+            money: {
               type: "string", // data-type
-              description: "Todo identification number", // desc
-              example: "ytyVgh", // example of an id
+              description: "money under budget", // desc
+              example: "2,000,000 /=", // example of an id
             },
-            title: {
+            duration: {
               type: "string", // data-type
-              description: "Todo's title", // desc
-              example: "Coding in JavaScript", // example of a title
+              description: "budget duration", // desc
+              example: "2 weeks", // example of a title
             },
-            completed: {
-              type: "boolean", // data type
-              description: "The status of the todo", // desc
+            expenditures: {
+              type: "objectID", // data type
+              description: "reference ID to expenditures under budget", // desc
               example: false, // example of a completed value
             },
           },
         },
-        // Todo input model
-        TodoInput: {
+        // user model
+        User: {
           type: "object", // data type
           properties: {
-            title: {
+            name: {
               type: "string", // data type
-              description: "Todo's title", // desc
-              example: "Coding in JavaScript", // example of a title
+              description: "User's name", // desc
+              example: "Jon Doe", // example of a title
             },
-            completed: {
-              type: "boolean", // data type
-              description: "The status of the todo", // desc
+            username: {
+              type: "string", // data type
+              description: "The username of the user", // desc
+              example: false, // example of a completed value
+            },
+            password: {
+              type: "string", // data type
+              description: "The password of the user", // desc
               example: false, // example of a completed value
             },
           },
@@ -90,7 +89,7 @@ module.exports = {
   paths:{
       '/todos':{
         get: {
-          tags: ["Todo CRUD operations"], // operation's tag.
+          tags: ["Budget CRUD operations"], // operation's tag.
           description: "Get todos", // operation's desc.
           operationId: "getTodos", // unique operation id.
           parameters: [], // expected params.
@@ -113,7 +112,7 @@ module.exports = {
 
         // operation's method
         post: {
-          tags: ["Todo CRUD operations"], // operation's tag
+          tags: ["Budget CRUD operations"], // operation's tag
           description: "Create todo", // short desc
           operationId: "createTodo", // unique operation id
           parameters: [], // expected params
@@ -146,7 +145,7 @@ module.exports = {
       '/todos/{id}':{
         // operation's method
         get: {
-          tags: ["Todo CRUD operations"], // operation's tag.
+          tags: ["Budget CRUD operations"], // operation's tag.
           description: "Get a todo", // operation's desc.
           operationId: "getTodo", // unique operation id
           parameters: [
@@ -193,7 +192,7 @@ module.exports = {
 
         // operation's method
         put: {
-          tags: ["Todo CRUD operations"], // operation's tag
+          tags: ["Budget CRUD operations"], // operation's tag
           description: "Update todo", // short desc
           operationId: "updateTodo", // unique operation id
           parameters: [
@@ -227,7 +226,7 @@ module.exports = {
 
         // operation's method.
         delete: {
-          tags: ["Todo CRUD operations"], // operation's tag
+          tags: ["Budget CRUD operations"], // operation's tag
           description: "Deleting a todo", // short desc
           operationId: "deleteTodo", // unique operation id
           parameters: [
