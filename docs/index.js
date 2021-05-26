@@ -102,7 +102,7 @@ module.exports = {
                 // content-type
                 "application/json": {
                   schema: {
-                    $ref: "#/components/schemas/Budget", // Todo model
+                    $ref: "#/components/schemas/Budget", // Budget model
                   },
                 },
               },
@@ -122,7 +122,7 @@ module.exports = {
               // content-type
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/Budget", // todo input data model
+                  $ref: "#/components/schemas/Budget", // budget data model
                 },
               },
             },
@@ -153,30 +153,27 @@ module.exports = {
             {
               name: "id", // name of the param
               in: "path", // location of the param
-              schema: {
-                $ref: "#/components/schemas/id", // data model of the param
-              },
               required: true, // Mandatory param
-              description: "A single todo id", // param desc.
+              description: "A single budget id", // param desc.
             },
           ],
           // expected responses
           responses: {
             // response code
             200: {
-              description: "Todo is obtained", // response desc.
+              description: "Budget is obtained", // response desc.
               content: {
                 // content-type
                 "application/json": {
                   schema: {
-                    $ref: "#/components/schemas/Todo", // todo data model
+                    $ref: "#/components/schemas/Budget", // budget data model
                   },
                 },
               },
             },
             // response code
             404: {
-              description: "Todo is not found", // response desc.
+              description: "Budget is not found", // response desc.
               content: {
                 // content-type
                 "application/json": {
@@ -193,29 +190,26 @@ module.exports = {
         // operation's method
         put: {
           tags: ["Budget CRUD operations"], // operation's tag
-          description: "Update todo", // short desc
-          operationId: "updateTodo", // unique operation id
+          description: "Update budget", // short desc
+          operationId: "updateBudget", // unique operation id
           parameters: [
             // expected params
             {
               name: "id", // name of param
               in: "path", // location of param
-              schema: {
-                $ref: "#/components/schemas/id", // id model
-              },
               required: true, // mandatory
-              description: "Id of todo to be updated", // short desc.
+              description: "Id of budget to be updated", // short desc.
             },
           ],
           // expected responses
           responses: {
             // response code
             200: {
-              description: "Todo updated successfully", // response desc.
+              description: "Budget updated successfully", // response desc.
             },
             // response code
             404: {
-              description: "Todo not found", // response desc.
+              description: "Budget not found", // response desc.
             },
             // response code
             500: {
@@ -227,29 +221,26 @@ module.exports = {
         // operation's method.
         delete: {
           tags: ["Budget CRUD operations"], // operation's tag
-          description: "Deleting a todo", // short desc
-          operationId: "deleteTodo", // unique operation id
+          description: "Deleting a Budget", // short desc
+          operationId: "deleteBudget", // unique operation id
           parameters: [
             // expected parameters
             {
               name: "id", // name of param
               in: "path", // location of param
-              schema: {
-                $ref: "#/components/schemas/id", // id model
-              },
               required: true, // mandatory
-              description: "Deleting a done todo", // param desc
+              description: "Deleting a budget", // param desc
             },
           ],
           // expected responses
           responses: {
             // response code
             200: {
-              description: "Todo deleted successfully", // response desc
+              description: "Budget deleted successfully", // response desc
             },
             // response code
             404: {
-              description: "Todo not found", // response desc
+              description: "Budget not found", // response desc
             },
             // response code
             500: {
