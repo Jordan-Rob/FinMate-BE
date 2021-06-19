@@ -54,6 +54,11 @@ expenditureRouter.put('/:id', async(request,response) => {
 
 })
 
+expenditureRouter.delete('/:id', async(request, response) => {
+    await Expenditure.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+})
+
 
 module.exports = expenditureRouter
 
