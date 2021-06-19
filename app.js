@@ -6,7 +6,9 @@ const mongoose = require('mongoose')
 const userRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const budgetRouter = require('./controllers/budgets')
+const expenditureRouter = require('./controllers/expenditures')
 const middleware = require('./utils/middleware')
+
 
 
 logger.info('connecting to', config.MONGODB_URI)
@@ -25,6 +27,7 @@ app.use(middleware.requestLogger)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/budgets', budgetRouter)
+app.use('/api/expenditures', expenditureRouter)
 
 
 if(process.env.NODE_ENV === 'test'){
