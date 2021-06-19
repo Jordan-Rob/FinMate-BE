@@ -1,4 +1,3 @@
-/*
 const expenditureRouter = require('express').Router()
 const Expenditure = require('../models/expenditure')
 const Budget = require('../models/budget')
@@ -22,12 +21,39 @@ expenditureRouter.get('/:id', async (request, response) => {
 expenditureRouter.post('/', async(request, response) => {
     const body = request.body
 
-    const expenditure = new Expenditure({
+    const budget = await Budget.find({name:body.budget})
 
+    const expenditure = new Expenditure({
+        expenseName:body.expenseName,
+        amount:body.amount,
+        date:body.date,
+        budget:budget._id
     })
+
+    const savedExpenditure = await expenditure.save()
+    response.status(201).json(savedExpenditure)
+    budget.expenditures = budget.expenditures.concat(savedExpenditure._id)
+    await budget.save()
+
 } )
+
+expenditureRouter.put('/:id', async(request,response) => {
+    const body = request.body
+
+    const budget = await Budget.find({name:body.budget})
+    const expenditure = {
+        expenseName:body.expenseName,
+        amount:body.amount,
+        date:body.date,
+        budget:budget._id
+    }
+
+    const updatedExpenditure = await Expenditure.findByIdAndUpdate(request.params.id, expenditure)
+    response.json(updatedExpenditure)
+
+
+})
 
 
 module.exports = expenditureRouter
 
-*/
